@@ -48,8 +48,9 @@
 	<script src="static/js/bootstrap.min.js"></script>
 <table width="59%" border="1">
     <%
+    
          Crud o = new Crud();
-        out.print(o.Calculate());
+        
     %>
 </table>
 
