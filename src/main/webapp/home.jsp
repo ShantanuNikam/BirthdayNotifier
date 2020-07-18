@@ -2,6 +2,9 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="com.example.uproot.Crud"%>
+    <%@ page import="java.sql.*" %>
+<%@ page import="java.io.*" %> 
+<%@ page import ="javafx.util.Pair" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -47,12 +50,31 @@
 	<script src="static/js/jquery-1.11.1.min.js"></script>
 	<script src="static/js/bootstrap.min.js"></script>
 <table width="59%" border="1">
-    <%
-    
-         Crud o = new Crud();
-        
-    %>
-</table>
+<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
+   <%
+   Crud os = new Crud();
+   Pair<ResultSet,Connection> p=os.Connect();
+   ResultSet rs = p.getKey();
+   Connection con= p.getValue();
+while (rs.next()) {
+%>
+<TR>
+<TD><%=rs.getInt(1)%></TD>
+<TD><%=rs.getString(2)%></TD>
+<TD><%=rs.getInt(3)%></TD>
+<TD><%=rs.getString(4)%></TD>
+<TD><%=rs.getString(5)%></TD>
+</TR>
+<% 
+} 
+%>
+<%
+
+// close all the connections.
+rs.close();
+con.close();
+
+%>
 
 
 </body>
