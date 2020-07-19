@@ -2,9 +2,14 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="com.example.uproot.Crud"%>
+    <%@ page import="com.example.uproot.Logic" %>
+    <%@ page import="com.example.uproot.CurrentDate" %>
+     <%@ page import="com.example.uproot.Date" %>
     <%@ page import="java.sql.*" %>
+    <%@ page import="java.lang.*" %>
 <%@ page import="java.io.*" %> 
 <%@ page import ="javafx.util.Pair" %>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -62,8 +67,21 @@ while (rs.next()) {
 <TD><%=rs.getInt(1)%></TD>
 <TD><%=rs.getString(2)%></TD>
 <TD><%=rs.getInt(3)%></TD>
-<TD><%=rs.getString(4)%></TD>
-<TD><%=rs.getString(5)%></TD>
+<TD><%=rs.getInt(4)%></TD>
+<TD><%=rs.getInt(5)%></TD>
+<%
+ 
+ int date = rs.getInt(3);
+ int month = rs.getInt(4);
+ int year = rs.getInt(5);
+ Date d1 = new Date(date,month,year);
+ CurrentDate d = new CurrentDate();
+ Date d2 =new Date (Integer.parseInt(d.Curentyear()),Integer.parseInt(d.Currentmonth()),Integer.parseInt(d.Currentdate()));
+ Logic o = new Logic();
+ int count=o.getDifference(d1, d2);
+ 
+%>
+<TD><%=count%></TD>
 </TR>
 <% 
 } 

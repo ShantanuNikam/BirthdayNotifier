@@ -16,7 +16,7 @@ public class Crud
 		      Class.forName(myDriver);
 		      Connection conn = DriverManager.getConnection(myUrl, "root", "password");
 
-		      String query = "SELECT * FROM birthday";
+		      String query = "SELECT * FROM birth";
 
 		     
 		      Statement st = conn.createStatement();
