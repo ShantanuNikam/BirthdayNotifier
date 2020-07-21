@@ -2,7 +2,12 @@ package com.example.uproot;
 
 public class Date  
 { 
-    int d, m, y; 
+    @Override
+	public String toString() {
+		return "Date [d=" + d + ", m=" + m + ", y=" + y + "]";
+	}
+
+	int d, m, y; 
 
     public Date(int d, int m, int y) 
     { 

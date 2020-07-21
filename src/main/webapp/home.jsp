@@ -61,6 +61,17 @@
    Pair<ResultSet,Connection> p=os.Connect();
    ResultSet rs = p.getKey();
    Connection con= p.getValue();
+   %>
+   <TD><%="Id"%></TD>
+   <TD><%="Name"%></TD>
+   <TD><%="Date"%></TD>
+   <TD><%="Month"%></TD>
+   <TD><%="Year"%></TD>
+   <TD><%="Years Passed"%></TD>
+   <TD><%="Months Passed"%></TD>
+   <TD><%="Dates Passed"%></TD>
+   <% 
+   
 while (rs.next()) {
 %>
 <TR>
@@ -76,16 +87,71 @@ while (rs.next()) {
  int year = rs.getInt(5);
  Date d1 = new Date(date,month,year);
  CurrentDate d = new CurrentDate();
- Date d2 =new Date (Integer.parseInt(d.Curentyear()),Integer.parseInt(d.Currentmonth()),Integer.parseInt(d.Currentdate()));
+ Date d2 =new Date (Integer.parseInt(d.Currentdate()),Integer.parseInt(d.Currentmonth()),Integer.parseInt(d.Curentyear()));
  Logic o = new Logic();
- int count=o.getDifference(d1, d2);
- 
+ int n=o.getDifference(d1, d2);
+ int years,months,days;
+	if(n>365)
+	{
+		years=n/365;
+		months = n%365;
+		%>
+		<TD><%=years%></TD>
+		
+		<%
+		if(months>30)
+		{
+			months  = months/30;
+			days = months%30;
+			%>
+			<TD><%=month%></TD>
+			
+			<%
+			 
+			%>
+			<TD><%=days%></TD>
+		
+			<%
+			}
+		else if (months<30)
+		{
+			days = months;
+			%>
+			<TD><%=days%></TD>
+			
+			<%
+		}
+	}
+	else
+	{
+		
+		
+		if(n>30)
+		{
+			months  = n/30;
+			days = n%30;
+			%>
+			<TD><%=month%></TD>
+			
+			<%
+			 
+			%>
+			<TD><%=days%></TD>
+			
+			<%
+		}
+		else if (n<30)
+		{
+			days = n;
+			%>
+			<TD><%=days%></TD>
+			
+			<%
+		}	
+	}
+}
 %>
-<TD><%=count%></TD>
 </TR>
-<% 
-} 
-%>
 <%
 
 // close all the connections.
