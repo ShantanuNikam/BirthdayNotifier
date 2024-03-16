@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
+    stage('Check GIT') {
       steps {
-        git(url: 'https://github.com/ShantanuNikam/BirthdayNotifier', branch: 'develop', changelog: true)
+        sh '''Git --version
+java --version'''
       }
     }
 
