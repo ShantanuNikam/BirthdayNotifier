@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Check GIT') {
       steps {
-        sh '''Git --version
-java --version'''
+        git(url: 'https://github.com/ShantanuNikam/BirthdayNotifier', branch: 'develop', changelog: true, poll: true)
       }
     }
 
